@@ -1,0 +1,112 @@
+{
+  "entities": {
+    "SportEvent": {
+      "title": "SportEvent",
+      "description": "An event centered around a sport or custom activity in a neighborhood spot.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "sport": { "type": "string" },
+        "description": { "type": "string" },
+        "location": { "type": "object" },
+        "date": { "type": "string" },
+        "startTime": { "type": "string" },
+        "duration": { "type": "string" },
+        "spotsFilled": { "type": "number" },
+        "maxPlayers": { "type": "number" },
+        "joinedPlayers": { "type": "array" },
+        "host": { "type": "object" },
+        "neededGear": { "type": "array" },
+        "status": { "type": "string" },
+        "level": { "type": "string" },
+        "whatsappGroupReplaced": { "type": "boolean" }
+      },
+      "required": ["id", "title", "sport", "location", "date", "startTime", "duration", "joinedPlayers", "host", "neededGear"]
+    },
+    "GearLocker": {
+      "title": "GearLocker",
+      "description": "A neighborhood smart locker sharing community gear.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "location": { "type": "object" },
+        "items": { "type": "array" },
+        "sponsor": { "type": "string" }
+      },
+      "required": ["id", "name", "location", "items"]
+    },
+    "Catalyst": {
+      "title": "Catalyst",
+      "description": "A local organizer driving community sports.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "bio": { "type": "string" },
+        "badge": { "type": "string" },
+        "points": { "type": "number" },
+        "sports": { "type": "array" }
+      },
+      "required": ["id", "name", "role", "avatarUrl", "bio", "badge", "points", "sports"]
+    },
+    "ChatMessage": {
+      "title": "ChatMessage",
+      "description": "A message sent in an event's real-time chat feed.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "eventId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "senderAvatar": { "type": "string" },
+        "isCatalyst": { "type": "boolean" },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "eventId", "senderName", "senderAvatar", "text", "timestamp"]
+    },
+    "VisitorSession": {
+      "title": "VisitorSession",
+      "description": "Real-time tracking of app visitors, device metadata, active status, and session duration.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "visitorId": { "type": "string" },
+        "visitorName": { "type": "string" },
+        "city": { "type": "string" },
+        "device": { "type": "string" },
+        "startTime": { "type": "number" },
+        "lastActiveTime": { "type": "number" },
+        "durationSeconds": { "type": "number" },
+        "isOnline": { "type": "boolean" },
+        "lastPageVisited": { "type": "string" }
+      },
+      "required": ["id", "visitorId", "visitorName", "startTime", "lastActiveTime", "durationSeconds", "isOnline"]
+    }
+  },
+  "firestore": {
+    "/events/{eventId}": {
+      "schema": "SportEvent",
+      "description": "Primary collection of buurtplay/custom sports and hobby events."
+    },
+    "/events/{eventId}/chats/{chatId}": {
+      "schema": "ChatMessage",
+      "description": "Nested chat subcollection for dynamic interactive discussions inside an event."
+    },
+    "/lockers/{lockerId}": {
+      "schema": "GearLocker",
+      "description": "Neighborhood smartbox gear lockers."
+    },
+    "/catalysts/{catalystId}": {
+      "schema": "Catalyst",
+      "description": "Active local community play catalysts."
+    },
+    "/sessions/{sessionId}": {
+      "schema": "VisitorSession",
+      "description": "Real-time session analytics and visitor tracking logs."
+    }
+  }
+}

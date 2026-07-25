@@ -1,0 +1,6 @@
+{
+  "name": "BuurtPlay",
+  "description": "A community-driven platform in the Netherlands combatting social isolation (eenzaamheid) and connecting youth to local sports, hobbies, and sports gear. Features low-barrier spectator and host welcome roles, neighborhood Catalysts, and active court chats to replace messy WhatsApp groups.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
