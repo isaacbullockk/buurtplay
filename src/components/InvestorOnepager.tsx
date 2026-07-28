@@ -16,8 +16,8 @@ export default function InvestorOnepager() {
   const { language, t } = useLanguage();
 
   // Calculator States
-  const [fundingAmount, setFundingAmount] = useState<number>(150000);
-  const [targetCities, setTargetCities] = useState<number>(5);
+  const [fundingAmount, setFundingAmount] = useState<number>(0);
+  const [targetCities, setTargetCities] = useState<number>(1);
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [investorName, setInvestorName] = useState<string>('');
   const [investorEmail, setInvestorEmail] = useState<string>('');
@@ -58,12 +58,12 @@ export default function InvestorOnepager() {
           </p>
           <div className="flex flex-wrap gap-4 pt-4">
             <div className="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl">
-              <p className="text-[10px] text-slate-400 uppercase font-semibold">Seed Target</p>
-              <p className="text-lg font-bold font-mono text-orange-400">€450,000</p>
+              <p className="text-[10px] text-slate-400 uppercase font-semibold">{language === 'en' ? 'Seed Target' : 'Seed Doel'}</p>
+              <p className="text-lg font-bold font-mono text-orange-400">€0</p>
             </div>
             <div className="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl">
               <p className="text-[10px] text-slate-400 uppercase font-semibold">{language === 'en' ? 'Current Commitments' : 'Huidige Toezeggingen'}</p>
-              <p className="text-lg font-bold font-mono text-emerald-400">€180,000</p>
+              <p className="text-lg font-bold font-mono text-emerald-400">€0</p>
             </div>
             <div className="bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl">
               <p className="text-[10px] text-slate-400 uppercase font-semibold">{language === 'en' ? 'Focus Region' : 'Focus Regio'}</p>
@@ -291,7 +291,7 @@ export default function InvestorOnepager() {
               </label>
               <input 
                 type="range" 
-                min="50000" 
+                min="0" 
                 max="500000" 
                 step="25000"
                 value={fundingAmount}
@@ -299,7 +299,7 @@ export default function InvestorOnepager() {
                 className="w-full accent-orange-500 bg-slate-800 h-1 rounded-lg"
               />
               <div className="flex justify-between text-[9px] text-slate-400 font-mono">
-                <span>€50k (Base)</span>
+                <span>€0 (Pilot Base)</span>
                 <span>€500k (Target)</span>
               </div>
             </div>

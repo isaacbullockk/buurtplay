@@ -135,6 +135,18 @@ export default function App() {
     });
   }, [selectedCity]); // Removed 'events' to stop overwriting on every events update
 
+  // Handle quickstart deeplink to auto-login as visitor
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('quickstart') === 'true' && !isLoggedIn) {
+      handleLoginAsVisitor();
+      
+      // Clean up URL
+      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+      window.history.replaceState({path: newUrl}, '', newUrl);
+    }
+  }, [isLoggedIn]);
+
   // Handle deeplink to specific event
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
